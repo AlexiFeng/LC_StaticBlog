@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,send_file
 from flask_flatpages import FlatPages
 from flask_frozen import Freezer
 import sys
@@ -10,16 +10,19 @@ app.config.from_object(__name__)
 
 flatpages = FlatPages(app)
 freezer = Freezer(app)
-pages = (p for p in flatpages if 'date' in p.meta)
+
 
 @app.route('/')
 def index():
+    pages = (p for p in flatpages if 'date' in p.meta)
     return render_template('index.html', pages=pages)
 
 @app.route('/pages/<path:path>/')
 def page(path):
+    print (path)
     page = flatpages.get_or_404(path)
-    return render_template('page.html', page=page)
+    t="build/pages/"+path+'/index.html'
+    return send_file(t)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
