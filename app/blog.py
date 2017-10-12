@@ -5,12 +5,11 @@ import sys
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='')
 app.config.from_object(__name__)
 
 flatpages = FlatPages(app)
 freezer = Freezer(app)
-
 
 @app.route('/')
 def index():
@@ -24,6 +23,10 @@ def page(path):
     #t="build/pages/"+path+'/index.html'
     #return send_file(t)
     return render_template('page.html', page=page)
+
+@app.route('/pygments.css')
+def pygments_css():
+    return pygments_style_defs('tango'), 200, {'Content-Type': 'text/css'}
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
