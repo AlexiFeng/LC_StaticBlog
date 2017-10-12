@@ -2,12 +2,34 @@
 <html>
 <head>
     <meta charset="utf-8">
-   
+
     <link href="../static/test.css" rel="stylesheet" type="text/css" />   
+    
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+    <link href="../static/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/fonts.css" rel="stylesheet" type="text/css" media="all" />
+
     {% block title %}{% endblock title %}
 </head>
 <body>
-    {% include "header.html"%}
+{% include "header.html"%}
+    <div id="page" class="container">
+            <div id="header">
+                <div id="logo">
+                    <img src="../static/images/pic.png" alt="" />
+                    <h1><a href="#">Love-Coding</a></h1>
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li class="current_page_item"><a href="#" accesskey="1" title="">Home</a></li>
+                        <li><a href="#" accesskey="2" title="">Article</a></li>
+                        <li><a href="#" accesskey="3" title="">About</a></li>
+                        <li><a href="#" accesskey="5" title="">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
     {% block content %}{% endblock content %}<!--网页具体内容-->
     {% include "footer.html"%}
 </body>

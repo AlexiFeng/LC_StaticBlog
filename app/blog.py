@@ -21,8 +21,9 @@ def index():
 def page(path):
     print (path)
     page = flatpages.get_or_404(path)
-    t="build/pages/"+path+'/index.html'
-    return send_file(t)
+    #t="build/pages/"+path+'/index.html'
+    #return send_file(t)
+    return render_template('page.html', page=page)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == "build":
